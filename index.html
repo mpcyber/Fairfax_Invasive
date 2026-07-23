@@ -65,6 +65,7 @@
     flex-direction: column;
   }
 
+  /* ── TOP BAR ── */
   .topbar {
     height: 40px;
     background: var(--surface);
@@ -115,6 +116,7 @@
     cursor: pointer;
   }
 
+  /* ── MAIN SPLIT ── */
   .split {
     display: grid;
     grid-template-columns: 1fr 320px;
@@ -122,6 +124,7 @@
     overflow: hidden;
   }
 
+  /* ── MAP PANEL ── */
   .map-panel {
     position: relative;
     overflow: hidden;
@@ -166,6 +169,56 @@
 
   .map-panel img { position: relative; z-index: 1; }
 
+  .chip {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    max-width: 160px;
+    pointer-events: none;
+  }
+
+  .chip-pip {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .chip-body {
+    background: rgba(12,13,20,0.82);
+    border-left: 2px solid currentColor;
+    padding: 0.35rem 0.55rem;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .chip-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .chip-desc {
+    font-family: Georgia, serif;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    color: rgba(216,211,200,0.85);
+  }
+
+  .chip-hot  { color: var(--hot); }
+  .chip-cold { color: var(--cold); }
+
+  .chip-1 { top: 20%; left: 24%; }
+  .chip-2 { top: 55%; left: 14%; }
+  .chip-3 { top: 70%; left: 48%; }
+
+  /* ── SIDEBAR ── */
   .sidebar {
     background: var(--surface);
     border-left: 1px solid var(--border);
@@ -283,9 +336,15 @@
     color: var(--text-2);
   }
 
-  .leg-ramp { width: 24px; height: 7px; border-radius: 1px; flex-shrink: 0; }
-  .leg-dot  { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-  .leg-line { width: 24px; height: 2px; flex-shrink: 0; }
+  .leg-ramp {
+    width: 24px; height: 7px; border-radius: 1px; flex-shrink: 0;
+  }
+  .leg-dot {
+    width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+  }
+  .leg-line {
+    width: 24px; height: 2px; flex-shrink: 0;
+  }
 
   .method {
     font-family: 'Courier New', Courier, monospace;
@@ -295,21 +354,24 @@
     letter-spacing: 0.02em;
   }
 
-  .method span { color: var(--text-2); }
+  .method span {
+    color: var(--text-2);
+  }
 
   @media (max-width: 680px) {
     body { overflow: auto; }
     .split { grid-template-columns: 1fr; grid-template-rows: 55vw auto; }
     .map-panel { height: 55vw; }
     .sidebar { overflow: visible; }
+    .chip { display: none; }
   }
 </style>
 
 <div class="topbar">
   <span class="topbar-left">Fairfax County, Virginia &nbsp;/&nbsp; Invasive Species Corridor Analysis</span>
   <div class="topbar-right">
-    <span class="badge badge-hot">Active Corridor</span>
-    <span class="badge badge-cold">Planned Corridor</span>
+    <span class="badge badge-hot">Active Disturbance</span>
+    <span class="badge badge-cold">Expansion Risk Zone</span>
     <button class="theme-toggle" onclick="toggle()">Theme</button>
   </div>
 </div>
@@ -319,7 +381,7 @@
   <div class="map-panel">
     <div class="map-placeholder">
       <canvas id="mapbg"></canvas>
-      <div class="map-placeholder-label"></div>
+      <div class="map-placeholder-label">map_invasive.png<br><span style="font-size:0.55rem;opacity:0.5">(loads from local file in deployed page)</span></div>
     </div>
     <img src="map_invasive.png" alt="Tree of Heaven KDE and Spotted Lanternfly sightings, Fairfax County"
          onerror="this.style.display='none'">
@@ -329,45 +391,44 @@
 
     <div class="sb-section">
       <span class="eyebrow">Ailanthus altissima · Lycorma delicatula</span>
-      <h1>Tree of Heaven &amp; the Road Corridor Problem</h1>
-      <p class="intro">New pavement means new disturbed soil. <em>A. altissima</em> colonizes these edges faster than any native species can recover — and where it establishes, Spotted Lanternfly follows.</p>
+      <h1>Wherever Infrastructure Disturbs Soil, Tree of Heaven Follows</h1>
+      <p class="intro">Fairfax County's invasive species pattern is not random. It is written by a century of linear infrastructure — and the next chapter is already under construction.</p>
     </div>
 
     <div class="sb-section">
-      <span class="eyebrow">Observations</span>
-      <div class="stats">
-        <div class="stat-row">
-          <span class="stat-num">640</span>
-          <span class="stat-desc">Tree of Heaven records within county</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-num">2,290</span>
-          <span class="stat-desc">Spotted Lanternfly sightings within county</span>
-        </div>
-        <div class="stat-row">
-          <span class="stat-num">3.6×</span>
-          <span class="stat-desc">More SLF than ToH — infestation outpacing the visible host plant</span>
+      <span class="eyebrow">Act I — The Historical Seed</span>
+      <div class="road-items">
+        <div class="road-item" style="border-left-color:#00d4cc">
+          <span class="road-tag" style="color:#00d4cc">19th Century Railroad → W&amp;OD Trail</span>
+          <div class="road-name">Zone 1: Primary Hotspot</div>
+          <p class="road-desc">The county's largest <em>A. altissima</em> cluster traces directly to the former Washington &amp; Old Dominion Railroad corridor. Rail corridors are among the most documented dispersal pathways for the species — disturbed ballast and embankments provided ideal colonization substrate, and populations established along the former line have been spreading laterally for over a century. The W&amp;OD Trail, now a recreational path atop that right-of-way, runs through the heart of this hotspot.</p>
         </div>
       </div>
     </div>
 
     <div class="sb-section">
-      <span class="eyebrow">Road Corridors</span>
+      <span class="eyebrow">Act II — The Modern Proof</span>
       <div class="road-items">
-        <div class="road-item active">
-          <span class="road-tag">Completed 2022</span>
+        <div class="road-item" style="border-left-color:#66b3ff">
+          <span class="road-tag" style="color:#66b3ff">Completed 2022</span>
           <div class="road-name">I-66 Transform Project</div>
-          <p class="road-desc">Major widening through western Fairfax created miles of exposed roadside soil. The peak density hotspot on the KDE tracks this corridor.</p>
+          <p class="road-desc">The largest road widening in recent Fairfax history tore up miles of roadside soil through the western corridor. Within two years, iNaturalist data shows a measurable density response along this axis — confirming that modern construction events replicate the same disturbance dynamic as the 19th-century railroad.</p>
         </div>
-        <div class="road-item active">
-          <span class="road-tag">Active Expansion</span>
+        <div class="road-item" style="border-left-color:#2d8c2d">
+          <span class="road-tag" style="color:#2d8c2d">Active — Zone 2 Emerging</span>
           <div class="road-name">Route 28 / Sully Road</div>
-          <p class="road-desc">Ongoing widening in the Centreville–Chantilly corridor aligns with the secondary density cluster in the southern half of the county.</p>
+          <p class="road-desc">Ongoing widening through the Centreville–Chantilly corridor is already producing a secondary density cluster. At 2,290 Spotted Lanternfly sightings versus 640 Tree of Heaven records — a 3.6× ratio — the infestation is outpacing visible host plant detection.</p>
         </div>
-        <div class="road-item planned">
-          <span class="road-tag">Planned</span>
-          <div class="road-name">Route 28 Extension Phases</div>
-          <p class="road-desc">Approved segments extend into currently lower-density areas. Spatial trend modeling identifies these zones as high establishment-risk post-construction.</p>
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <span class="eyebrow">Act III — The Predicted Wave</span>
+      <div class="road-items">
+        <div class="road-item" style="border-left-color:#e8a020">
+          <span class="road-tag" style="color:#e8a020">Under Construction Now</span>
+          <div class="road-name">Richmond Highway — Embark Project</div>
+          <p class="road-desc">The Embark Richmond Highway initiative is actively rebuilding Route 1 through southeastern Fairfax — widening lanes, adding bus rapid transit, and relocating utilities across a 10-mile corridor. No significant <em>A. altissima</em> cluster exists here yet. Based on the pattern established by the W&amp;OD corridor and I-66, the dashed zone on the map represents where one is likely to emerge.</p>
         </div>
       </div>
     </div>
@@ -384,7 +445,23 @@
           Spotted Lanternfly sightings
         </div>
         <div class="leg-item">
-          <div class="leg-line" style="background:#ffe066"></div>
+          <div class="leg-line" style="border-top: 2px dashed #00d4cc; height: 0; background: none;"></div>
+          W&amp;OD Trail (former railroad corridor)
+        </div>
+        <div class="leg-item">
+          <div class="leg-line" style="background:#66b3ff"></div>
+          I-66 (widened 2022)
+        </div>
+        <div class="leg-item">
+          <div class="leg-line" style="background:#2d8c2d"></div>
+          Route 28 / Sully Rd (active expansion)
+        </div>
+        <div class="leg-item">
+          <div class="leg-line" style="border-top: 2px dashed #e8a020; height: 0; background: none;"></div>
+          Predicted expansion zone (Embark / Rte 1)
+        </div>
+        <div class="leg-item">
+          <div class="leg-line" style="background:#555566"></div>
           Major roads
         </div>
         <div class="leg-item">
@@ -416,12 +493,36 @@
       const W = canvas.offsetWidth, H = canvas.offsetHeight;
       canvas.width = W; canvas.height = H;
       const ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,W,H);
       ctx.fillStyle = '#1a1a2e';
       ctx.fillRect(0,0,W,H);
       ctx.strokeStyle = 'rgba(255,255,255,0.04)';
       ctx.lineWidth = 1;
       for(let x=0; x<W; x+=40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
       for(let y=0; y<H; y+=40) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+      ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4,6]);
+      ctx.beginPath();
+      const cx = W*0.5, cy = H*0.48, r = Math.min(W,H)*0.36;
+      ctx.ellipse(cx, cy, r*0.85, r, -0.15, 0, Math.PI*2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      const blobs = [
+        {x:0.42,y:0.28,r:0.18,c:'rgba(207,80,40,0.18)'},
+        {x:0.3,y:0.42,r:0.13,c:'rgba(207,80,40,0.12)'},
+        {x:0.58,y:0.52,r:0.11,c:'rgba(207,80,40,0.1)'},
+        {x:0.5,y:0.65,r:0.1,c:'rgba(207,80,40,0.09)'},
+      ];
+      blobs.forEach(b => {
+        const g = ctx.createRadialGradient(b.x*W,b.y*H,0,b.x*W,b.y*H,b.r*Math.min(W,H));
+        g.addColorStop(0,b.c);
+        g.addColorStop(1,'rgba(0,0,0,0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(b.x*W,b.y*H,b.r*Math.min(W,H),0,Math.PI*2);
+        ctx.fill();
+      });
     }
     draw();
     new ResizeObserver(draw).observe(canvas.parentElement);
