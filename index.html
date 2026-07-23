@@ -380,9 +380,7 @@
 <div class="topbar">
   <span class="topbar-left">Fairfax County, Virginia &nbsp;/&nbsp; Invasive Species Corridor Analysis</span>
   <div class="topbar-right">
-    <span class="badge badge-hot">Active Disturbance</span>
-    <span class="badge badge-cold">Expansion Risk Zone</span>
-    <button class="theme-toggle" onclick="toggle()">Theme</button>
+<button class="theme-toggle" onclick="toggle()">Theme</button>
   </div>
 </div>
 
@@ -412,9 +410,8 @@
       <span class="eyebrow">Origin</span>
       <div class="road-items">
         <div class="road-item" style="border-left-color:#c8a44a">
-          <span class="road-tag" style="color:#c8a44a">W&amp;OD Trail — Former Railroad Corridor</span>
-          <div class="road-name">Primary Density Cluster</div>
-          <p class="road-desc">The W&amp;OD Trail sits on top of the old Washington &amp; Old Dominion Railroad bed, which ran across northern Fairfax until the line was abandoned in 1968. Tree of Heaven was already here by then. The plant thrives in exactly the conditions that infrastructure creates: compacted, nutrient-poor soil with full sun exposure and no competition from established vegetation. Every road widening, utility trench, and graded embankment is an open invitation. That original railroad population has been pushing outward ever since. It is now the largest Tree of Heaven cluster in the county.</p>
+          <span class="road-tag" style="color:#c8a44a">W&OD Trail — Former Railroad Corridor</span>
+          <p class="road-desc">The W&OD Trail sits on top of the old Washington & Old Dominion Railroad bed, which ran across northern Fairfax until the line was abandoned in 1968. Tree of Heaven was already here by then. The plant thrives in exactly the conditions that infrastructure creates: compacted, nutrient-poor soil with full sun exposure and no competition from established vegetation. Every road widening, utility trench, and graded embankment is an open invitation. That original railroad population has been pushing outward ever since. It is now the largest Tree of Heaven cluster in the county.</p>
         </div>
       </div>
     </div>
@@ -424,12 +421,10 @@
       <div class="road-items">
         <div class="road-item" style="border-left-color:#4a9eda">
           <span class="road-tag" style="color:#4a9eda">I-66 Transform — Completed 2022</span>
-          <div class="road-name">Western Corridor</div>
           <p class="road-desc">The I-66 Transform Project was the largest road widening in recent Fairfax history, tearing up miles of roadside soil through the western corridor when it wrapped up in 2022. Two years later, the iNaturalist record shows a measurable density response along that axis. The railroad pattern is repeating itself on a much faster timeline.</p>
         </div>
         <div class="road-item" style="border-left-color:#3dada8">
           <span class="road-tag" style="color:#3dada8">Route 28 / Sully Road — Active</span>
-          <div class="road-name">Secondary Cluster Emerging</div>
           <p class="road-desc">Widening through Centreville and Chantilly is still ongoing, and a secondary cluster is already taking shape there. The Spotted Lanternfly numbers tell the fuller story: 2,290 SLF sightings in the county versus 640 Tree of Heaven records. The insect is moving faster than the host plant is being documented.</p>
         </div>
       </div>
@@ -440,8 +435,7 @@
       <div class="road-items">
         <div class="road-item" style="border-left-color:#9b6dcc">
           <span class="road-tag" style="color:#9b6dcc">Embark Richmond Highway — Under Construction</span>
-          <div class="road-name">Southeastern Fairfax</div>
-          <p class="road-desc">The Embark Richmond Highway project is rebuilding Route 1 through southeastern Fairfax. New lanes, bus rapid transit, utility relocation across ten miles of corridor. The conditions are the same ones that produced the W&amp;OD cluster: compacted disturbed soil, cleared edges, full sun, no established vegetation to compete with. Given what the data shows in northern and western Fairfax, southeastern Fairfax is likely to see new clusters emerge as construction progresses and disturbed ground goes unmanaged.</p>
+          <p class="road-desc">The Embark Richmond Highway project is rebuilding Route 1 through southeastern Fairfax. New lanes, bus rapid transit, utility relocation across ten miles of corridor. The conditions are the same ones that produced the W&OD cluster: compacted disturbed soil, cleared edges, full sun, no established vegetation to compete with. Given what the data shows in northern and western Fairfax, southeastern Fairfax is likely to see new clusters emerge as construction progresses and disturbed ground goes unmanaged.</p>
         </div>
       </div>
     </div>
@@ -459,7 +453,7 @@
         </div>
         <div class="leg-item">
           <div class="leg-line" style="border-top: 2px dashed #c8a44a; height: 0; background: none;"></div>
-          W&amp;OD Trail (former railroad corridor)
+          W&OD Trail (former railroad corridor)
         </div>
         <div class="leg-item">
           <div class="leg-line" style="background:#4a9eda"></div>
@@ -524,22 +518,6 @@
       ctx.ellipse(cx, cy, r*0.85, r, -0.15, 0, Math.PI*2);
       ctx.stroke();
       ctx.setLineDash([]);
-      // soft hotspot blobs
-      const blobs = [
-        {x:0.42,y:0.28,r:0.18,c:'rgba(207,80,40,0.18)'},
-        {x:0.3,y:0.42,r:0.13,c:'rgba(207,80,40,0.12)'},
-        {x:0.58,y:0.52,r:0.11,c:'rgba(207,80,40,0.1)'},
-        {x:0.5,y:0.65,r:0.1,c:'rgba(207,80,40,0.09)'},
-      ];
-      blobs.forEach(b => {
-        const g = ctx.createRadialGradient(b.x*W,b.y*H,0,b.x*W,b.y*H,b.r*Math.min(W,H));
-        g.addColorStop(0,b.c);
-        g.addColorStop(1,'rgba(0,0,0,0)');
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(b.x*W,b.y*H,b.r*Math.min(W,H),0,Math.PI*2);
-        ctx.fill();
-      });
     }
     draw();
     new ResizeObserver(draw).observe(canvas.parentElement);
