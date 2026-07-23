@@ -68,6 +68,7 @@
     flex-direction: column;
   }
 
+  /* ── TOP BAR ── */
   .topbar {
     height: 40px;
     background: var(--surface);
@@ -118,6 +119,7 @@
     cursor: pointer;
   }
 
+  /* ── MAIN SPLIT ── */
   .split {
     display: grid;
     grid-template-columns: 1fr 320px;
@@ -125,6 +127,7 @@
     overflow: hidden;
   }
 
+  /* ── MAP PANEL ── */
   .map-panel {
     position: relative;
     overflow: hidden;
@@ -139,6 +142,7 @@
     display: block;
   }
 
+  /* placeholder shown when img fails */
   .map-placeholder {
     position: absolute;
     inset: 0;
@@ -169,6 +173,7 @@
 
   .map-panel img { position: relative; z-index: 1; }
 
+  /* annotation chips */
   .chip {
     position: absolute;
     z-index: 2;
@@ -218,6 +223,7 @@
   .chip-2 { top: 55%; left: 14%; }
   .chip-3 { top: 70%; left: 48%; }
 
+  /* ── SIDEBAR ── */
   .sidebar {
     background: var(--surface);
     border-left: 1px solid var(--border);
@@ -263,6 +269,7 @@
     line-height: 1.7;
   }
 
+  /* stats */
   .stats {
     display: flex;
     flex-direction: column;
@@ -291,6 +298,7 @@
     line-height: 1.4;
   }
 
+  /* road items */
   .road-items { display: flex; flex-direction: column; gap: 1rem; }
 
   .road-item {
@@ -325,6 +333,7 @@
     line-height: 1.5;
   }
 
+  /* legend */
   .legend { display: flex; flex-direction: column; gap: 0.55rem; }
 
   .leg-item {
@@ -345,6 +354,7 @@
     width: 24px; height: 2px; flex-shrink: 0;
   }
 
+  /* methodology */
   .method {
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 0.65rem;
@@ -357,6 +367,7 @@
     color: var(--text-2);
   }
 
+  /* mobile */
   @media (max-width: 680px) {
     body { overflow: auto; }
     .split { grid-template-columns: 1fr; grid-template-rows: 55vw auto; }
@@ -378,20 +389,23 @@
 <div class="split">
 
   <div class="map-panel">
+    <!-- placeholder canvas behind the image -->
     <div class="map-placeholder">
       <canvas id="mapbg"></canvas>
       <div class="map-placeholder-label">map_invasive.png<br><span style="font-size:0.55rem;opacity:0.5">(loads from local file in deployed page)</span></div>
     </div>
     <img src="map_invasive.png" alt="Tree of Heaven KDE and Spotted Lanternfly sightings, Fairfax County"
          onerror="this.style.display='none'">
+
   </div>
 
   <aside class="sidebar">
 
     <div class="sb-section">
-      <span class="eyebrow">Ailanthus altissima · Lycorma delicatula</span>
+      <span class="eyebrow">Invasive Species Corridor Analysis</span>
       <h1>Disturb the ground. Tree of Heaven moves in.</h1>
-      <p class="intro">Fairfax County has been building and expanding roads for decades. So has <em>A. altissima</em>. The two patterns are not unrelated.</p>
+      <p class="intro">Tree of Heaven is an invasive plant which is continually growing in Fairfax County, famous for its difficulty to remove and its relationship with the ecosystem-damaging Spotted Lanternfly.</p>
+      <p class="intro" style="margin-top:0.9rem;">Historically the plant has benefitted from large scale land clearing projects, setting up in recently cleared land areas with little oversight or maintenance. It is important to consider this invasive species moving in as we clear land for development in Fairfax County.</p>
     </div>
 
     <div class="sb-section">
@@ -400,7 +414,7 @@
         <div class="road-item" style="border-left-color:#c8a44a">
           <span class="road-tag" style="color:#c8a44a">W&amp;OD Trail — Former Railroad Corridor</span>
           <div class="road-name">Primary Density Cluster</div>
-          <p class="road-desc">The W&amp;OD Trail sits on top of the old Washington &amp; Old Dominion Railroad bed, which ran across northern Fairfax until the line was abandoned in 1968. <em>A. altissima</em> was already here by then. Tree of Heaven thrives in exactly the conditions that infrastructure creates: compacted, nutrient-poor soil with full sun exposure and no competition from established vegetation. Every road widening, utility trench, and graded embankment is an open invitation. That original railroad population has been pushing outward ever since. It is now the largest Tree of Heaven cluster in the county.</p>
+          <p class="road-desc">The W&amp;OD Trail sits on top of the old Washington &amp; Old Dominion Railroad bed, which ran across northern Fairfax until the line was abandoned in 1968. Tree of Heaven was already here by then. The plant thrives in exactly the conditions that infrastructure creates: compacted, nutrient-poor soil with full sun exposure and no competition from established vegetation. Every road widening, utility trench, and graded embankment is an open invitation. That original railroad population has been pushing outward ever since. It is now the largest Tree of Heaven cluster in the county.</p>
         </div>
       </div>
     </div>
@@ -486,6 +500,7 @@
 </div>
 
 <script>
+  // placeholder canvas — subtle topographic grid
   (function() {
     const canvas = document.getElementById('mapbg');
     function draw() {
@@ -495,10 +510,12 @@
       ctx.clearRect(0,0,W,H);
       ctx.fillStyle = '#1a1a2e';
       ctx.fillRect(0,0,W,H);
+      // faint grid
       ctx.strokeStyle = 'rgba(255,255,255,0.04)';
       ctx.lineWidth = 1;
       for(let x=0; x<W; x+=40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
       for(let y=0; y<H; y+=40) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+      // ghost county shape
       ctx.strokeStyle = 'rgba(255,255,255,0.12)';
       ctx.lineWidth = 1.5;
       ctx.setLineDash([4,6]);
@@ -507,6 +524,7 @@
       ctx.ellipse(cx, cy, r*0.85, r, -0.15, 0, Math.PI*2);
       ctx.stroke();
       ctx.setLineDash([]);
+      // soft hotspot blobs
       const blobs = [
         {x:0.42,y:0.28,r:0.18,c:'rgba(207,80,40,0.18)'},
         {x:0.3,y:0.42,r:0.13,c:'rgba(207,80,40,0.12)'},
