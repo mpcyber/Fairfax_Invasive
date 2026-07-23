@@ -1,5 +1,8 @@
 
 <title>Invasive Species Corridor — Fairfax County, VA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg:       #0c0d14;
@@ -58,14 +61,13 @@
   body {
     background: var(--bg);
     color: var(--text-1);
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
     height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
   }
 
-  /* ── TOP BAR ── */
   .topbar {
     height: 40px;
     background: var(--surface);
@@ -78,7 +80,7 @@
   }
 
   .topbar-left {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 0.68rem;
     letter-spacing: 0.08em;
     color: var(--text-2);
@@ -92,7 +94,7 @@
   }
 
   .badge {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 0.62rem;
     letter-spacing: 0.06em;
     padding: 0.2rem 0.55rem;
@@ -110,13 +112,12 @@
     font-size: 0.62rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     padding: 0.2rem 0.6rem;
     border-radius: 2px;
     cursor: pointer;
   }
 
-  /* ── MAIN SPLIT ── */
   .split {
     display: grid;
     grid-template-columns: 1fr 320px;
@@ -124,7 +125,6 @@
     overflow: hidden;
   }
 
-  /* ── MAP PANEL ── */
   .map-panel {
     position: relative;
     overflow: hidden;
@@ -160,7 +160,7 @@
     position: relative;
     z-index: 1;
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 0.7rem;
     color: rgba(255,255,255,0.2);
     letter-spacing: 0.12em;
@@ -196,7 +196,7 @@
   }
 
   .chip-label {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 0.62rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -218,7 +218,6 @@
   .chip-2 { top: 55%; left: 14%; }
   .chip-3 { top: 70%; left: 48%; }
 
-  /* ── SIDEBAR ── */
   .sidebar {
     background: var(--surface);
     border-left: 1px solid var(--border);
@@ -239,7 +238,7 @@
   .sb-section:last-child { border-bottom: none; }
 
   .eyebrow {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 0.62rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -249,7 +248,7 @@
   }
 
   h1 {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: 'DM Serif Display', Georgia, serif;
     font-size: 1.25rem;
     font-weight: 800;
     line-height: 1.2;
@@ -277,7 +276,7 @@
   }
 
   .stat-num {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 1.65rem;
     font-weight: 700;
     color: var(--hot);
@@ -302,7 +301,7 @@
   .road-item.planned { border-left-color: var(--cold); }
 
   .road-tag {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 0.6rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -313,7 +312,7 @@
   .road-item.planned .road-tag { color: var(--cold); }
 
   .road-name {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
     font-size: 0.85rem;
     font-weight: 700;
     margin-bottom: 0.2rem;
@@ -347,7 +346,7 @@
   }
 
   .method {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
     font-size: 0.65rem;
     color: var(--text-3);
     line-height: 1.8;
@@ -391,44 +390,44 @@
 
     <div class="sb-section">
       <span class="eyebrow">Ailanthus altissima · Lycorma delicatula</span>
-      <h1>Wherever Infrastructure Disturbs Soil, Tree of Heaven Follows</h1>
-      <p class="intro">Fairfax County's invasive species pattern is not random. It is written by a century of linear infrastructure — and the next chapter is already under construction.</p>
+      <h1>Disturb the ground. Tree of Heaven moves in.</h1>
+      <p class="intro">Fairfax County has been building and expanding roads for decades. So has <em>A. altissima</em>. The two patterns are not unrelated.</p>
     </div>
 
     <div class="sb-section">
-      <span class="eyebrow">Act I — The Historical Seed</span>
+      <span class="eyebrow">Origin</span>
       <div class="road-items">
-        <div class="road-item" style="border-left-color:#00d4cc">
-          <span class="road-tag" style="color:#00d4cc">19th Century Railroad → W&amp;OD Trail</span>
-          <div class="road-name">Zone 1: Primary Hotspot</div>
-          <p class="road-desc">The county's largest <em>A. altissima</em> cluster traces directly to the former Washington &amp; Old Dominion Railroad corridor. Rail corridors are among the most documented dispersal pathways for the species — disturbed ballast and embankments provided ideal colonization substrate, and populations established along the former line have been spreading laterally for over a century. The W&amp;OD Trail, now a recreational path atop that right-of-way, runs through the heart of this hotspot.</p>
+        <div class="road-item" style="border-left-color:#c8a44a">
+          <span class="road-tag" style="color:#c8a44a">W&amp;OD Trail — Former Railroad Corridor</span>
+          <div class="road-name">Primary Density Cluster</div>
+          <p class="road-desc">The W&amp;OD Trail follows the old Washington &amp; Old Dominion Railroad bed across northern Fairfax. <em>A. altissima</em> was already established here when trains still ran — disturbed ballast and drainage ditches along the right-of-way are classic habitat for the species. That population has been spreading outward for over a century. It is now the largest Tree of Heaven cluster in the county.</p>
         </div>
       </div>
     </div>
 
     <div class="sb-section">
-      <span class="eyebrow">Act II — The Modern Proof</span>
+      <span class="eyebrow">Current Growth</span>
       <div class="road-items">
-        <div class="road-item" style="border-left-color:#66b3ff">
-          <span class="road-tag" style="color:#66b3ff">Completed 2022</span>
-          <div class="road-name">I-66 Transform Project</div>
-          <p class="road-desc">The largest road widening in recent Fairfax history tore up miles of roadside soil through the western corridor. Within two years, iNaturalist data shows a measurable density response along this axis — confirming that modern construction events replicate the same disturbance dynamic as the 19th-century railroad.</p>
+        <div class="road-item" style="border-left-color:#4a9eda">
+          <span class="road-tag" style="color:#4a9eda">I-66 Transform — Completed 2022</span>
+          <div class="road-name">Western Corridor</div>
+          <p class="road-desc">The I-66 widening tore up miles of roadside soil through western Fairfax. Two years later, the iNaturalist record shows a clear density response along that axis. The railroad pattern is repeating itself — just faster.</p>
         </div>
-        <div class="road-item" style="border-left-color:#2d8c2d">
-          <span class="road-tag" style="color:#2d8c2d">Active — Zone 2 Emerging</span>
-          <div class="road-name">Route 28 / Sully Road</div>
-          <p class="road-desc">Ongoing widening through the Centreville–Chantilly corridor is already producing a secondary density cluster. At 2,290 Spotted Lanternfly sightings versus 640 Tree of Heaven records — a 3.6× ratio — the infestation is outpacing visible host plant detection.</p>
+        <div class="road-item" style="border-left-color:#3dada8">
+          <span class="road-tag" style="color:#3dada8">Route 28 / Sully Road — Active</span>
+          <div class="road-name">Secondary Cluster Emerging</div>
+          <p class="road-desc">Construction through Centreville and Chantilly is ongoing, and a secondary cluster is already forming. Spotted Lanternfly sightings in the county now outnumber Tree of Heaven records 3.6 to 1 — the insect is spreading faster than the host plant is being reported.</p>
         </div>
       </div>
     </div>
 
     <div class="sb-section">
-      <span class="eyebrow">Act III — The Predicted Wave</span>
+      <span class="eyebrow">Projected Growth</span>
       <div class="road-items">
-        <div class="road-item" style="border-left-color:#e8a020">
-          <span class="road-tag" style="color:#e8a020">Under Construction Now</span>
-          <div class="road-name">Richmond Highway — Embark Project</div>
-          <p class="road-desc">The Embark Richmond Highway initiative is actively rebuilding Route 1 through southeastern Fairfax — widening lanes, adding bus rapid transit, and relocating utilities across a 10-mile corridor. No significant <em>A. altissima</em> cluster exists here yet. Based on the pattern established by the W&amp;OD corridor and I-66, the dashed zone on the map represents where one is likely to emerge.</p>
+        <div class="road-item" style="border-left-color:#9b6dcc">
+          <span class="road-tag" style="color:#9b6dcc">Embark Richmond Highway — Under Construction</span>
+          <div class="road-name">Southeastern Fairfax</div>
+          <p class="road-desc">Route 1 through southeastern Fairfax is being rebuilt — new lanes, bus rapid transit, utility relocation across ten miles of corridor. There are no significant <em>A. altissima</em> clusters here right now. Based on what happened along I-66 and the W&amp;OD, there will be.</p>
         </div>
       </div>
     </div>
@@ -445,20 +444,20 @@
           Spotted Lanternfly sightings
         </div>
         <div class="leg-item">
-          <div class="leg-line" style="border-top: 2px dashed #00d4cc; height: 0; background: none;"></div>
+          <div class="leg-line" style="border-top: 2px dashed #c8a44a; height: 0; background: none;"></div>
           W&amp;OD Trail (former railroad corridor)
         </div>
         <div class="leg-item">
-          <div class="leg-line" style="background:#66b3ff"></div>
+          <div class="leg-line" style="background:#4a9eda"></div>
           I-66 (widened 2022)
         </div>
         <div class="leg-item">
-          <div class="leg-line" style="background:#2d8c2d"></div>
+          <div class="leg-line" style="background:#3dada8"></div>
           Route 28 / Sully Rd (active expansion)
         </div>
         <div class="leg-item">
-          <div class="leg-line" style="border-top: 2px dashed #e8a020; height: 0; background: none;"></div>
-          Predicted expansion zone (Embark / Rte 1)
+          <div class="leg-line" style="border-top: 2px dashed #9b6dcc; height: 0; background: none;"></div>
+          Projected expansion zone (Embark / Rte 1)
         </div>
         <div class="leg-item">
           <div class="leg-line" style="background:#555566"></div>
